@@ -10,9 +10,14 @@ import {AuthContext} from './helpers/AuthContext'
 import axios from 'axios'
 import React, {useState, useEffect} from 'react';
 import Profile from './pages/Profile';
+
+
 //import { response } from 'express';
 function App() {
   const [authState, setAuthState] = useState({username: "", id:0, status: false})
+  const [darkMode, setDarkMode] = useState(false)
+ 
+
  
   useEffect(() => {
     axios.get('http://localhost:3001/auth/auth', {headers: {
@@ -33,13 +38,15 @@ function App() {
   },[])
 
 
+
+
   const logout = () => {
     localStorage.removeItem("accessToken")
     setAuthState({username: "", id:0, status: false})
   }
 
   return (
-    <div className="App">
+    <div className={`App ${darkMode ? "darkmode" : ""}` }>
       <AuthContext.Provider value={{authState, setAuthState}}>
       <Router>
         <nav className = "navbar">
@@ -47,9 +54,17 @@ function App() {
         <div className ="navbar-menu">
       
         <Link to='/createpost'>CreatePost</Link>
+        
         <div className='display-user'>
+        {authState.status ? (
+          <>
         <Link to={`/profile/${authState.id}`}>{authState.username}</Link>
+        </>
+        ) : (
+          <Link to ='/login'></Link>
+        )}
         </div>
+       
         {!authState.status ? (
         <>
         
@@ -67,6 +82,7 @@ function App() {
         
         </div>
         </nav>
+        
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/createpost' element={<CreatePost />} />

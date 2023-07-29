@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import './profile.css'
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -17,7 +16,6 @@ function Profile() {
     axios.get(`http://localhost:3001/posts/byuserId/${id}`).then((response) => {
       setListOfPosts(response.data);
     });
-    
   }, []);
 
   return (

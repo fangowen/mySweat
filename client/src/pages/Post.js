@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../helpers/AuthContext";
 
+
 function Post() {
   let { id } = useParams();
   const [postObject, setPostObject] = useState({});
@@ -61,6 +62,9 @@ function Post() {
             return val.id != id;
           })
         );
+      })
+      .catch((error) => {
+        console.error("Error deleting comment: ", error);
       });
   };
 
@@ -111,8 +115,9 @@ function Post() {
           {comments.map((comment, key) => {
             return (
               <div key={key} className="comment">
+                
+                <label> {comment.username}:</label>
                 {comment.commentBody}
-                <label> Username: {comment.username}</label>
                 {authState.username === comment.username && (
                   <button
                     onClick={() => {

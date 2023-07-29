@@ -191,7 +191,7 @@ body {
 }
 
 
-/* INDIVIDUAL POST */
+ /*NDIVIDUAL POST*/ 
 .postPage {
   display: flex;
   flex-direction: row;
@@ -237,7 +237,7 @@ button {
 }
 
 .addCommentContainer input {
-  border: 2px solid dodgerblue;
+  border: 2px solid palevioletred;
 }
 
 .rightSide .listOfComments {
@@ -292,7 +292,7 @@ button {
 }
 
 .loginContainer button {
-  background-color: dodgerblue;
+  background-color: palevioletred;
   color: white;
 }
 
